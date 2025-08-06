@@ -8,7 +8,7 @@ export default function Home() {
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-8">
             <h1 className="text-5xl md:text-7xl font-serif text-rose-800 mb-4">
-              It's a Girl! 💕
+              It&apos;s a Girl! 💕
             </h1>
             <div className="w-32 h-1 bg-rose-400 mx-auto mb-6"></div>
             <p className="text-xl text-stone-600 font-light">
@@ -56,7 +56,7 @@ export default function Home() {
       {/* Header */}
       <header className="text-center py-8 px-6">
         <h2 className="text-3xl md:text-5xl font-serif text-rose-800 mb-4">
-          Baby Silva's Shower
+          Baby Silva&apos;s Shower
         </h2>
         <div className="w-24 h-1 bg-rose-400 mx-auto mb-6"></div>
         <p className="text-lg text-stone-600 font-light">
@@ -84,7 +84,7 @@ export default function Home() {
                 <div className="w-4 h-4 bg-rose-400 rounded-full flex-shrink-0"></div>
                 <div>
                   <h3 className="font-medium text-stone-800">Gift Opening</h3>
-                  <p className="text-stone-600 text-sm">3:00 PM - Watch Baby Silva's first presents</p>
+                  <p className="text-stone-600 text-sm">3:00 PM - Watch Baby Silva&apos;s first presents</p>
                 </div>
               </div>
               <div className="flex items-center space-x-4">
@@ -138,7 +138,7 @@ export default function Home() {
               </div>
               <h3 className="font-serif text-xl text-rose-800 mb-2">Our Little Princess</h3>
               <p className="text-stone-600">Coming Soon</p>
-              <p className="text-stone-600 text-sm">We can't wait to meet our baby girl!</p>
+              <p className="text-stone-600 text-sm">We can&apos;t wait to meet our baby girl!</p>
             </div>
           </div>
         </section>
@@ -150,8 +150,8 @@ export default function Home() {
               RSVP & Registry
             </h2>
             <p className="text-stone-600 max-w-2xl mx-auto">
-              Your presence is the greatest gift, but if you'd like to contribute to Baby Silva's journey, 
-              we've curated a special registry of princess-worthy essentials.
+              Your presence is the greatest gift, but if you&apos;d like to contribute to Baby Silva&apos;s journey, 
+              we&apos;ve curated a special registry of princess-worthy essentials.
             </p>
           </div>
 
@@ -165,7 +165,7 @@ export default function Home() {
               </div>
               <h3 className="text-xl font-serif text-rose-800 mb-4">Please RSVP</h3>
               <p className="text-stone-600 mb-6">
-                Let us know you'll be joining our celebration by March 1st
+                Let us know you&apos;ll be joining our celebration by March 1st
               </p>
               <button className="bg-rose-600 hover:bg-rose-700 text-white px-8 py-3 rounded-full font-medium transition-colors">
                 RSVP Now
