@@ -1,11 +1,64 @@
+"use client";
+
 import Image from "next/image";
+import { useState, useEffect } from "react";
 
 export default function Home() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  
+  const slides = [
+    {
+      image: "/images/baby_silva.jpeg",
+      title: "The Big Reveal",
+      description: "Our precious moment discovering we are having a little princess"
+    },
+    {
+      image: "/images/BA4FEDD5-7BAC-41C4-8882-380B228DEFD0_1_105_c.jpeg",
+      title: "Anticipation",
+      description: "Looking forward to holding our little miracle"
+    },
+    {
+      image: "/images/5F8C52CC-AEDF-4EF7-9BED-B7DF085C6727_1_105_c.jpeg",
+      title: "Growing with Love",
+      description: "Every step closer to meeting our baby girl"
+    },
+    {
+      image: "/images/A07C81EA-CA20-4454-86A6-92AFCF05EC98_1_105_c.jpeg",
+      title: "Pure Joy",
+      description: "The excitement and happiness of our little miracle"
+    },
+    {
+      image: "/images/D9F8668D-35DE-499F-AF9E-C7494F886B72_1_105_c.jpeg",
+      title: "Summer Time",
+      description: "Enjoying the summer with our little baby"
+    },
+    {
+      image: "/images/F0841BF9-5E6D-4EB4-8246-54A02C5B5E32_1_105_c.jpeg",
+      title: "Beautiful Moments",
+      description: "Our little family is growing"
+    }
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, [slides.length, currentSlide]); // Reset timer when currentSlide changes
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % slides.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-rose-50 to-stone-100">
-      {/* Gender Reveal Carousel */}
+      {/* Interactive Photo Slideshow */}
       <section className="py-8 px-6">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           <div className="text-center mb-8">
             <h1 className="text-5xl md:text-7xl font-serif text-rose-800 mb-4">
               It&apos;s a Girl! 💕
@@ -16,38 +69,61 @@ export default function Home() {
             </p>
           </div>
           
-          {/* Photo Carousel */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-4 shadow-lg border border-rose-200">
-              <div className="relative w-full h-48 rounded-xl overflow-hidden mb-4">
-                <Image
-                  src="/images/baby_silva.jpeg"
-                  alt="Gender Reveal Photo 1"
-                  fill
-                  className="object-cover"
+          {/* Slideshow Container */}
+          <div className="relative bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl border border-rose-200 overflow-hidden">
+            <div className="relative h-64 sm:h-80 md:h-[500px] lg:h-[600px]">
+              <Image
+                src={slides[currentSlide].image}
+                alt={slides[currentSlide].title}
+                fill
+                className="object-cover"
+                priority
+              />
+              
+              {/* Navigation Arrows */}
+              <button
+                onClick={prevSlide}
+                className="absolute left-4 md:left-6 top-1/2 transform -translate-y-1/2 bg-white/70 hover:bg-white/90 text-rose-600 rounded-full p-2 md:p-4 shadow-xl border border-white/20 backdrop-blur-sm transition-all duration-200 hover:scale-110 z-20"
+                aria-label="Previous image"
+              >
+                <svg className="w-4 h-4 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+              
+              <button
+                onClick={nextSlide}
+                className="absolute right-4 md:right-6 top-1/2 transform -translate-y-1/2 bg-white/70 hover:bg-white/90 text-rose-600 rounded-full p-2 md:p-4 shadow-xl border border-white/20 backdrop-blur-sm transition-all duration-200 hover:scale-110 z-20"
+                aria-label="Next image"
+              >
+                <svg className="w-4 h-4 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
+            
+            {/* Content Overlay */}
+            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/50 via-black/20 to-transparent md:from-black/70 md:via-black/30 text-white p-4 md:p-8 pb-16 md:pb-20">
+              <div className="max-w-4xl mx-auto">
+                <h3 className="text-xl md:text-3xl lg:text-4xl font-serif mb-2 md:mb-4 drop-shadow-lg">{slides[currentSlide].title}</h3>
+                <p className="text-sm md:text-base lg:text-lg opacity-90 max-w-2xl drop-shadow-md">{slides[currentSlide].description}</p>
+              </div>
+            </div>
+            
+            {/* Slide Indicators */}
+            <div className="absolute bottom-6 md:bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2 md:space-x-3">
+              {slides.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentSlide(index)}
+                  className={`w-2 h-2 md:w-3 md:h-3 lg:w-4 lg:h-4 rounded-full transition-all duration-200 ${
+                    index === currentSlide
+                      ? 'bg-white scale-110 shadow-lg'
+                      : 'bg-white/60 hover:bg-white/90'
+                  }`}
+                  aria-label={`Go to slide ${index + 1}`}
                 />
-              </div>
-              <p className="text-center text-stone-700 font-medium">The Big Reveal</p>
-            </div>
-            
-            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-4 shadow-lg border border-rose-200">
-              <div className="relative w-full h-48 rounded-xl overflow-hidden mb-4 bg-gradient-to-br from-rose-100 to-rose-200 flex items-center justify-center">
-                <div className="text-center">
-                  <div className="text-4xl mb-2">👶🏻</div>
-                  <p className="text-rose-700 font-serif text-lg">Our Story</p>
-                </div>
-              </div>
-              <p className="text-center text-stone-700 font-medium">Beautiful Moments</p>
-            </div>
-            
-            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-4 shadow-lg border border-rose-200">
-              <div className="relative w-full h-48 rounded-xl overflow-hidden mb-4 bg-gradient-to-br from-rose-100 to-rose-200 flex items-center justify-center">
-                <div className="text-center">
-                  <div className="text-4xl mb-2">🌸</div>
-                  <p className="text-rose-700 font-serif text-lg">Little Princess</p>
-                </div>
-              </div>
-              <p className="text-center text-stone-700 font-medium">Coming Soon</p>
+              ))}
             </div>
           </div>
         </div>
@@ -66,38 +142,6 @@ export default function Home() {
 
       {/* Main Content Container */}
       <main className="max-w-6xl mx-auto px-6 pb-16">
-        {/* Timeline Section */}
-        <section className="mb-16">
-          <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 md:p-12 shadow-lg border border-rose-200">
-            <h2 className="text-2xl md:text-3xl font-serif text-rose-800 mb-8 text-center">
-              Timeline
-            </h2>
-            <div className="space-y-6">
-              <div className="flex items-center space-x-4">
-                <div className="w-4 h-4 bg-rose-400 rounded-full flex-shrink-0"></div>
-                <div>
-                  <h3 className="font-medium text-stone-800">Welcome & Mingling</h3>
-                  <p className="text-stone-600 text-sm">2:00 PM - Light refreshments and games</p>
-                </div>
-              </div>
-              <div className="flex items-center space-x-4">
-                <div className="w-4 h-4 bg-rose-400 rounded-full flex-shrink-0"></div>
-                <div>
-                  <h3 className="font-medium text-stone-800">Gift Opening</h3>
-                  <p className="text-stone-600 text-sm">3:00 PM - Watch Baby Silva&apos;s first presents</p>
-                </div>
-              </div>
-              <div className="flex items-center space-x-4">
-                <div className="w-4 h-4 bg-rose-400 rounded-full flex-shrink-0"></div>
-                <div>
-                  <h3 className="font-medium text-stone-800">Sweet Treats</h3>
-                  <p className="text-stone-600 text-sm">4:00 PM - Cake and celebration</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* Grid Section */}
         <section className="mb-16">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -109,8 +153,8 @@ export default function Home() {
                 </svg>
               </div>
               <h3 className="font-serif text-xl text-rose-800 mb-2">When</h3>
-              <p className="text-stone-600">Saturday, March 15th</p>
-              <p className="text-stone-600">2:00 PM - 5:00 PM</p>
+              <p className="text-stone-600">September 6th, 2025</p>
+              <p className="text-stone-600">4:30 PM</p>
             </div>
 
             {/* Location Card */}
@@ -122,8 +166,18 @@ export default function Home() {
                 </svg>
               </div>
               <h3 className="font-serif text-xl text-rose-800 mb-2">Where</h3>
-              <p className="text-stone-600">The Garden Room</p>
-              <p className="text-stone-600 text-sm">123 Bloom Street</p>
+              <p className="text-stone-600">24951 112 Ave</p>
+              <p className="text-stone-600 text-sm">Maple Ridge, BC</p>
+              <p className="text-stone-500 text-sm">
+                <a 
+                  href="https://maps.app.goo.gl/NF75Eho5beoLUC7s8" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-rose-600 hover:text-rose-700 hover:underline transition-colors"
+                >
+                  📍 View on Google Maps
+                </a>
+              </p>
             </div>
 
             {/* Baby Photo Card */}
@@ -150,8 +204,8 @@ export default function Home() {
               RSVP & Registry
             </h2>
             <p className="text-stone-600 max-w-2xl mx-auto">
-              Your presence is the greatest gift, but if you&apos;d like to contribute to Baby Silva&apos;s journey, 
-              we&apos;ve curated a special registry of princess-worthy essentials.
+              Your presence is the greatest gift of all, but if you&apos;d like to contribute to Baby Silva&apos;s journey, 
+              feel free to check out our gift registry.
             </p>
           </div>
 
@@ -165,11 +219,16 @@ export default function Home() {
               </div>
               <h3 className="text-xl font-serif text-rose-800 mb-4">Please RSVP</h3>
               <p className="text-stone-600 mb-6">
-                Let us know you&apos;ll be joining our celebration by March 1st
+                Let us know you&apos;ll be joining our celebration
               </p>
-              <button className="bg-rose-600 hover:bg-rose-700 text-white px-8 py-3 rounded-full font-medium transition-colors">
+              <a 
+                href="https://docs.google.com/forms/d/e/1FAIpQLSdvmyCghLWmUXZ36I7ddCEAuBzDHZr5RYyrWF-t0EKhK-VBGg/viewform?usp=sharing&ouid=112872763500968537636"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-rose-600 hover:bg-rose-700 text-white px-8 py-3 rounded-full font-medium transition-colors inline-block"
+              >
                 RSVP Now
-              </button>
+              </a>
             </div>
 
             {/* Registry Card */}
@@ -183,9 +242,14 @@ export default function Home() {
               <p className="text-stone-600 mb-6">
                 Thoughtfully curated items to welcome our little princess
               </p>
-              <button className="bg-rose-600 hover:bg-rose-700 text-white px-8 py-3 rounded-full font-medium transition-colors">
+              <a 
+                href="https://www.amazon.ca/baby-reg/jhancarlos-silvamartinez-andreasofia-guardadoescobar-december-2025-mapleridge/64911REDF9RL"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-rose-600 hover:bg-rose-700 text-white px-8 py-3 rounded-full font-medium transition-colors inline-block"
+              >
                 View Registry
-              </button>
+              </a>
             </div>
           </div>
         </section>
