@@ -10,12 +10,12 @@ export default function Home() {
     {
       image: "/images/baby_silva.jpeg",
       title: "The Big Reveal",
-      description: "Our precious moment discovering we are having a little princess"
+      description: "The moment we found out it was a little princess"
     },
     {
       image: "/images/BA4FEDD5-7BAC-41C4-8882-380B228DEFD0_1_105_c.jpeg",
       title: "Anticipation",
-      description: "Looking forward to holding our little miracle"
+      description: "Excited for all the moments we will share with our baby girl"
     },
     {
       image: "/images/5F8C52CC-AEDF-4EF7-9BED-B7DF085C6727_1_105_c.jpeg",
@@ -25,7 +25,7 @@ export default function Home() {
     {
       image: "/images/A07C81EA-CA20-4454-86A6-92AFCF05EC98_1_105_c.jpeg",
       title: "Pure Joy",
-      description: "The excitement and happiness of our little miracle"
+      description: "The excitement and happiness we are living while waiting for baby girl"
     },
     {
       image: "/images/D9F8668D-35DE-499F-AF9E-C7494F886B72_1_105_c.jpeg",
@@ -60,12 +60,26 @@ export default function Home() {
       <section className="py-8 px-6">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-8">
-            <h1 className="text-5xl md:text-7xl font-serif text-rose-800 mb-4">
+            <h1 className="text-5xl md:text-7xl font-serif text-rose-800 mb-6">
               It&apos;s a Girl! 💕
             </h1>
+            
+            {/* Ultrasound Photo Section */}
+            <div className="mb-8">
+              <div className="relative w-32 h-32 md:w-40 md:h-40 mx-auto mb-4 rounded-full overflow-hidden border-4 border-rose-300 shadow-lg">
+                <Image
+                  src="/images/ultrasound.png"
+                  alt="Baby Silva Ultrasound"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <p className="text-sm text-rose-600 font-medium">First glimpse of our little princess</p>
+            </div>
+            
             <div className="w-32 h-1 bg-rose-400 mx-auto mb-6"></div>
             <p className="text-xl text-stone-600 font-light">
-              Our journey to meeting Baby Silva
+              Our beautiful journey continues... 💕
             </p>
           </div>
           
@@ -102,12 +116,13 @@ export default function Home() {
               </button>
             </div>
             
+            {/* Background Overlay */}
+            <div className="absolute bottom-0 left-0 right-0 h-32 md:h-40 bg-gradient-to-t from-black/60 via-black/30 to-transparent md:from-black/70 md:via-black/40"></div>
+            
             {/* Content Overlay */}
-            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/50 via-black/20 to-transparent md:from-black/70 md:via-black/30 text-white p-4 md:p-8 pb-16 md:pb-20">
-              <div className="max-w-4xl mx-auto">
-                <h3 className="text-xl md:text-3xl lg:text-4xl font-serif mb-2 md:mb-4 drop-shadow-lg">{slides[currentSlide].title}</h3>
-                <p className="text-sm md:text-base lg:text-lg opacity-90 max-w-2xl drop-shadow-md">{slides[currentSlide].description}</p>
-              </div>
+            <div className="absolute bottom-14 md:bottom-16 left-4 right-4 md:left-8 md:right-8 text-white z-10">
+              <h3 className="text-lg md:text-3xl lg:text-4xl font-serif mb-2 md:mb-3 drop-shadow-lg leading-tight">{slides[currentSlide].title}</h3>
+              <p className="text-sm md:text-base lg:text-lg opacity-90 drop-shadow-md leading-relaxed">{slides[currentSlide].description}</p>
             </div>
             
             {/* Slide Indicators */}
@@ -132,7 +147,7 @@ export default function Home() {
       {/* Header */}
       <header className="text-center py-8 px-6">
         <h2 className="text-3xl md:text-5xl font-serif text-rose-800 mb-4">
-          Baby Silva&apos;s Shower
+          Baby Silva&apos;s Shower 🛁
         </h2>
         <div className="w-24 h-1 bg-rose-400 mx-auto mb-6"></div>
         <p className="text-lg text-stone-600 font-light">
@@ -144,7 +159,7 @@ export default function Home() {
       <main className="max-w-6xl mx-auto px-6 pb-16">
         {/* Grid Section */}
         <section className="mb-16">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
             {/* Date & Time Card */}
             <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-rose-200 text-center">
               <div className="w-12 h-12 bg-rose-200 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -179,21 +194,6 @@ export default function Home() {
                 </a>
               </p>
             </div>
-
-            {/* Baby Photo Card */}
-            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-rose-200 text-center">
-              <div className="relative w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden border-4 border-rose-200">
-                <Image
-                  src="/images/baby_silva.jpeg"
-                  alt="Baby Silva"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <h3 className="font-serif text-xl text-rose-800 mb-2">Our Little Princess</h3>
-              <p className="text-stone-600">Coming Soon</p>
-              <p className="text-stone-600 text-sm">We can&apos;t wait to meet our baby girl!</p>
-            </div>
           </div>
         </section>
 
@@ -201,7 +201,7 @@ export default function Home() {
         <section className="bg-gradient-to-r from-rose-100 to-stone-100 rounded-3xl p-8 md:p-12 shadow-lg border border-rose-200">
           <div className="text-center mb-8">
             <h2 className="text-3xl md:text-4xl font-serif text-rose-800 mb-4">
-              RSVP & Registry
+              RSVP & Registry 🎁
             </h2>
             <p className="text-stone-600 max-w-2xl mx-auto">
               Your presence is the greatest gift of all, but if you&apos;d like to contribute to Baby Silva&apos;s journey, 
@@ -261,7 +261,7 @@ export default function Home() {
           With love and anticipation • The Silva Family
         </p>
         <p className="text-rose-400 text-xs mt-2">
-          💕 Welcome to our little princess 💕
+          💕 Welcome little princess 💕
         </p>
       </footer>
     </div>
