@@ -25,7 +25,7 @@ export default function Home() {
     {
       image: "/images/A07C81EA-CA20-4454-86A6-92AFCF05EC98_1_105_c.jpeg",
       title: "Pure Joy",
-      description: "The excitement and happiness we are living while waiting for baby girl"
+      description: "The excitement and happiness we are living while waiting"
     },
     {
       image: "/images/D9F8668D-35DE-499F-AF9E-C7494F886B72_1_105_c.jpeg",
